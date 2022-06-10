@@ -269,8 +269,8 @@ val_annotation_path   获得图片的路径和标签
 map指标和对数平均误检率如下
 
 <center class="half">
-	<img src="/md_image/mAP.png" alt="mAP" style="zoom:50%;" />
-	<img src="/md_image/lamr.png" alt="lamr" style="zoom:50%;" />
+	<img src="/md_image/mAP.png" alt="mAP" width="300" />
+	<img src="/md_image/lamr.png" alt="lamr" width="300" />
 </center>
 
 以bottle为例
@@ -322,7 +322,7 @@ $$
 
 在数据预处理时将四张图片进行翻转、缩放等操作拼成一张图片，提高学习样本的多样性，且一次计算能够处理四张图片
 
-image待处理
+<img src="/md_image/Mosaic.PNG" alt="Mosaic" width="300" />
 
 # 后记
 

@@ -269,17 +269,18 @@ val_annotation_path   获得图片的路径和标签
 map指标和对数平均误检率如下
 
 <center class="half">
-	<img src="/md_image/mAP.png" alt="mAP" style="zoom:72%;" />
-	<img src="/md_image/lamr.png" alt="lamr" style="zoom:72%;" />
+	<img src="/md_image/mAP.png" alt="mAP" style="zoom:50%;" />
+	<img src="/md_image/lamr.png" alt="lamr" style="zoom:50%;" />
 </center>
 
 以bottle为例
-<figure class="half">
-	<img src="E:\Homework\CV\报告\image\bottle_AP.png" alt="bottle_AP" style="zoom:72%;" />
-	<img src="E:\Homework\CV\报告\image\bottle_F1.png" alt="bottle_F1" style="zoom:72%;" />
-	<img src="E:\Homework\CV\报告\image\bottle_prec.png" alt="bottle_prec" style="zoom:72%;" />
-	<img src="E:\Homework\CV\报告\image\bottle_re.png" alt="bottle_re" style="zoom:72%;" />
-</figure>
+<center class="half">
+	<img src="/md_image/bottle_AP.png" alt="bottle_AP" style="zoom:50%;" />
+	<img src="/md_image/bottle_F1.png" alt="bottle_F1" style="zoom:50%;" />
+	<img src="/md_image/bottle_prec.png" alt="bottle_prec" style="zoom:50%;" />
+	<img src="/md_image/bottle_re.png" alt="bottle_re" style="zoom:50%;" />
+</center>
+
 # 对实验结果的原理性分析
 
 由上述评估结果可见，yolov4对小目标的检测存在缺陷，漏检率高。因为小目标往往分辨率低、体积小，网络不断提取高层的特征语义过程中，感受野增大，忽略了小目标。也有部分是因为训练集样本不平衡，因此可以通过训练数据数据增强、更改预测框的调整算法、自适应先验框等方法来改善，这部分在结论与总结中有提到。或者是加入注意力机制，yolov5针对小目标检测有很多改进的方面。

@@ -11,7 +11,7 @@ def cvtColor(image):
     else:
         image = image.convert('RGB')
         return image 
-    
+
 #---------------------------------------------------#
 #   对输入图像进行resize
 #---------------------------------------------------#
@@ -60,12 +60,3 @@ def get_lr(optimizer):
 def preprocess_input(image):
     image /= 255.0
     return image
-
-def show_config(**kwargs):
-    print('Configurations:')
-    print('-' * 70)
-    print('|%25s | %40s|' % ('keys', 'values'))
-    print('-' * 70)
-    for key, value in kwargs.items():
-        print('|%25s | %40s|' % (str(key), str(value)))
-    print('-' * 70)

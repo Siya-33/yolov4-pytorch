@@ -1,5 +1,3 @@
-[TOC]
-
 # 课设简介
 
 fork了[bubbing的项目](https://github.com/bubbliiiing/yolov4-pytorch)
@@ -73,7 +71,7 @@ val_annotation_path   获得图片的路径和标签
 # 实验原理<span id = "jump1"> </span><span id = "jump1"> </span>
 ## 模型概述
 
-<img src="E:\Homework\CV\报告\image\net.PNG" alt="net" style="zoom:67%;" />
+<img src="/md_image/net.PNG" alt="net" style="zoom:67%;" />
 
 模型主要由三大部分组成
 
@@ -96,13 +94,13 @@ val_annotation_path   获得图片的路径和标签
 
 $						Mish = x \times tanh(ln(1+e^x))$
 
-<img src="E:\Homework\CV\报告\image\Mish.PNG" alt="Mish" style="zoom:50%;" />
+<img src="/md_image/Mish.PNG" alt="Mish" style="zoom:50%;" />
 
 Resblock_body  一系列残差网络构成的大卷积块
 
 结构图如下
 
-<img src="E:\Homework\CV\报告\image\Resblock_body.PNG" alt="Resblock_body" style="zoom:50%;" />
+<img src="/md_image/Resblock_body.PNG" alt="Resblock_body" style="zoom:50%;" />
 
 残差块堆叠分成了两部分，一部分做常规n次的堆叠，另一部分直接连接到输出，分别对应conv0和conv1
 
@@ -164,7 +162,7 @@ def make_five_conv(filters_list, in_filters):
 
 同yolov3，做两次卷积得到预测结果
 
-<img src="E:\Homework\CV\报告\image\yolo_head.PNG" alt="yolo_head" style="zoom:50%;" />
+<img src="/md_image/yolo_head.PNG" alt="yolo_head" style="zoom:50%;" />
 
 ```python
 def yolo_head(filters_list, in_filters):
@@ -214,7 +212,7 @@ pred_boxes[..., 3]  = torch.exp(h.data) * anchor_h
 
 得到预测框的种类、坐标、得分，把它们绘制在图上
 
-![predict_i](E:\Homework\CV\报告\image\predict_i.PNG)
+![predict_i](/md_image/predict_i.PNG)
 
 ### LOSS
 
@@ -270,10 +268,11 @@ val_annotation_path   获得图片的路径和标签
 
 map指标和对数平均误检率如下
 
-<figure class="half">
-	<img src="E:\Homework\CV\报告\image\mAP.png" alt="mAP" style="zoom:72%;" />
-	<img src="E:\Homework\CV\报告\image\lamr.png" alt="lamr" style="zoom:72%;" />
-</figure>
+<center class="half">
+	<img src="/md_image/mAP.png" alt="mAP" style="zoom:72%;" />
+	<img src="/md_image/lamr.png" alt="lamr" style="zoom:72%;" />
+</center>
+
 以bottle为例
 <figure class="half">
 	<img src="E:\Homework\CV\报告\image\bottle_AP.png" alt="bottle_AP" style="zoom:72%;" />
@@ -292,7 +291,7 @@ map指标和对数平均误检率如下
 
 ## CIoU
 
-<img src="E:\Homework\CV\报告\image\CIoU.PNG" alt="CIoU" style="zoom:50%;" />
+<img src="/md_image/CIoU.PNG" alt="CIoU" style="zoom:50%;" />
 $$
 CIoU=I o U-\frac{\rho^{2}\left(b, b^{g t}\right)}{c^{2}}-\alpha v
 $$

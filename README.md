@@ -93,15 +93,15 @@ val_annotation_path   获得图片的路径和标签
 激活函数采用Mish
 
 $						Mish = x \times tanh(ln(1+e^x))$
-
+<p align="middle">
 <img src="/md_image/Mish.PNG" alt="Mish" style="zoom:50%;" />
-
+</p>
 Resblock_body  一系列残差网络构成的大卷积块
 
 结构图如下
-
-<img src="/md_image/Resblock_body.PNG" alt="Resblock_body" style="zoom:50%;" />
-
+<p align="middle">
+<img src="/md_image/Resblock_body.PNG" alt="Resblock_body" width="50%" />
+</p>
 残差块堆叠分成了两部分，一部分做常规n次的堆叠，另一部分直接连接到输出，分别对应conv0和conv1
 
 ```python
@@ -161,9 +161,9 @@ def make_five_conv(filters_list, in_filters):
 **yolo.py**
 
 同yolov3，做两次卷积得到预测结果
-
+<p align="middle">
 <img src="/md_image/yolo_head.PNG" alt="yolo_head" style="zoom:50%;" />
-
+</p>
 ```python
 def yolo_head(filters_list, in_filters):
     m = nn.Sequential(
@@ -211,9 +211,9 @@ pred_boxes[..., 3]  = torch.exp(h.data) * anchor_h
 计算预测框，进行非极大抑制（取出每一种类得分最大的框，计算与其他的框的交并比，大于阈值则剔除）
 
 得到预测框的种类、坐标、得分，把它们绘制在图上
-
-![predict_i](/md_image/predict_i.PNG)
-
+<p align="middle">
+    <img src="/md_image/predict_i.PNG" alt="predict_i" width="40%" />
+</p>
 ### LOSS
 
 **yolo_training.py**
@@ -268,18 +268,18 @@ val_annotation_path   获得图片的路径和标签
 
 map指标和对数平均误检率如下
 
-<center class="half">
-	<img src="/md_image/mAP.png" alt="mAP" width="300" />
-	<img src="/md_image/lamr.png" alt="lamr" width="300" />
-</center>
+<p align="middle">
+	<img src="/md_image/mAP.png" alt="mAP" width="500" />
+	<img src="/md_image/lamr.png" alt="lamr" width="500" />
+</p>
 
 以bottle为例
-<center class="half">
-	<img src="/md_image/bottle_AP.png" alt="bottle_AP" style="zoom:50%;" />
-	<img src="/md_image/bottle_F1.png" alt="bottle_F1" style="zoom:50%;" />
-	<img src="/md_image/bottle_prec.png" alt="bottle_prec" style="zoom:50%;" />
-	<img src="/md_image/bottle_re.png" alt="bottle_re" style="zoom:50%;" />
-</center>
+<p align="middle">
+	<img src="/md_image/bottle_AP.png" alt="bottle_AP" width="40%" />
+	<img src="/md_image/bottle_F1.png" alt="bottle_F1" width="40%" />
+	<img src="/md_image/bottle_prec.png" alt="bottle_prec" width="40%" />
+	<img src="/md_image/bottle_re.png" alt="bottle_re" width="40%" />
+</p>
 
 # 对实验结果的原理性分析
 
@@ -291,19 +291,19 @@ map指标和对数平均误检率如下
 相比于yolov3，yolov4有相当多的改进点
 
 ## CIoU
+<p align="middle">
+<img src="/md_image/CIoU.PNG" alt="CIoU" width="50%"/>
+</p>
+<p align="middle">
+<img src="https://latex.codecogs.com/svg.image?\large&space;CIoU=I&space;o&space;U-\frac{\rho^{2}\left(b,&space;b^{g&space;t}\right)}{c^{2}}-\alpha&space;v" title="https://latex.codecogs.com/svg.image?\large CIoU=I o U-\frac{\rho^{2}\left(b, b^{g t}\right)}{c^{2}}-\alpha v" />
+</p>
 
-<img src="/md_image/CIoU.PNG" alt="CIoU" style="zoom:50%;" />
-$$
-CIoU=I o U-\frac{\rho^{2}\left(b, b^{g t}\right)}{c^{2}}-\alpha v
-$$
-$b$和$b^{gt}$分别代表了预测框和真实框的中心点，$\rho^2$代表的是计算两个中心点间的欧式距离。 ![[公式]](https://www.zhihu.com/equation?tex=c) 代表的是能够同时包含预测框和真实框的最小闭包区域的对角线距离
+$b$和$b^{gt}$分别代表了预测框和真实框的中心点，$\rho^2$代表的是计算两个中心点间的欧式距离。 $c$代表的是能够同时包含预测框和真实框的最小闭包区域的对角线距离
 
 其中$\alpha$是权重函数，$v$度量两个框宽高比的相似性，使得宽高比趋向于一致
-$$
-\alpha=\frac{v}{1-IoU+v}\\\\
-v=\frac{4}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right)^{2}\\\\
-Loss=1-CIoU
-$$
+<p align="middle">
+<img src="https://latex.codecogs.com/svg.image?\large&space;\alpha=\frac{v}{1-IoU&plus;v}\\\\v=\frac{4}{\pi^{2}}\left(\arctan&space;\frac{w^{g&space;t}}{h^{g&space;t}}-\arctan&space;\frac{w}{h}\right)^{2}\\\\Loss=1-CIoU" title="https://latex.codecogs.com/svg.image?\large \alpha=\frac{v}{1-IoU+v}\\\\v=\frac{4}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right)^{2}\\\\Loss=1-CIoU" />
+</p>
 相比于只计算IoU，这种方法考虑了目标与anchor之间的距离，重叠率、尺度以及宽高比。在预测框和真实框不重叠的情况下，或者是水平垂直的情况下都能快速地收敛，不会出现像IoU一样发散的情况。总的来说就是使收敛更快更准确了
 
 ## Eliminate grid sensitivity
@@ -321,9 +321,9 @@ $$
 ## Mosaic数据增强
 
 在数据预处理时将四张图片进行翻转、缩放等操作拼成一张图片，提高学习样本的多样性，且一次计算能够处理四张图片
-
+<p align="middle">
 <img src="/md_image/Mosaic.PNG" alt="Mosaic" width="300" />
-
+</p>
 # 后记
 
 **实验过程中遇到的部分琐碎问题总结**

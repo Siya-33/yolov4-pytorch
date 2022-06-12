@@ -1,6 +1,6 @@
 # 课设简介
 
-fork了[bubbing的项目](https://github.com/bubbliiiing/yolov4-pytorch)
+fork了[bubbing的项目](https://github.com/bubbliiiing/yolov4-pytorch)的2.0版本
 
 使用YoloV4对voc数据集进行目标检测，总结实验原理
 
@@ -214,6 +214,7 @@ pred_boxes[..., 3]  = torch.exp(h.data) * anchor_h
 <p align="middle">
     <img src="/md_image/predict_i.PNG" alt="predict_i" width="40%" />
 </p>
+
 ### LOSS
 
 **yolo_training.py**
@@ -302,28 +303,28 @@ $b$和$b^{gt}$分别代表了预测框和真实框的中心点，$\rho^2$代表�
 
 其中$\alpha$是权重函数，$v$度量两个框宽高比的相似性，使得宽高比趋向于一致
 <p align="middle">
-<img src="https://latex.codecogs.com/svg.image?\large&space;\alpha=\frac{v}{1-IoU&plus;v}\\\\v=\frac{4}{\pi^{2}}\left(\arctan&space;\frac{w^{g&space;t}}{h^{g&space;t}}-\arctan&space;\frac{w}{h}\right)^{2}\\\\Loss=1-CIoU" title="https://latex.codecogs.com/svg.image?\large \alpha=\frac{v}{1-IoU+v}\\\\v=\frac{4}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right)^{2}\\\\Loss=1-CIoU" />
+<img src="https://latex.codecogs.com/svg.image?\large&space;\begin{aligned}\alpha&=\frac{v}{1-IoU&plus;v}\\\\v&=\frac{4}{\pi^{2}}\left(\arctan&space;\frac{w^{g&space;t}}{h^{g&space;t}}-\arctan&space;\frac{w}{h}\right)^{2}\\\\Loss&=1-CIoU\end{aligned}&space;" title="https://latex.codecogs.com/svg.image?\large \begin{aligned}\alpha&=\frac{v}{1-IoU+v}\\\\v&=\frac{4}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right)^{2}\\\\Loss&=1-CIoU\end{aligned} " />
 </p>
 相比于只计算IoU，这种方法考虑了目标与anchor之间的距离，重叠率、尺度以及宽高比。在预测框和真实框不重叠的情况下，或者是水平垂直的情况下都能快速地收敛，不会出现像IoU一样发散的情况。总的来说就是使收敛更快更准确了
 
 ## Eliminate grid sensitivity
 
 原本计算预测框中心点的位置是通过左上角的网格点加上x,y上的偏移量得到的，公式如下
-$$
-b_x=\sigma(x\_offset)+c_x\\
-b_y=\sigma(y\_offset)+c_y
-$$
+<p align="middle">
+<img src="https://latex.codecogs.com/svg.image?\large&space;\begin{aligned}b_x=\sigma(x\_offset)&plus;c_x\\b_y=\sigma(y\_offset)&plus;c_y\end{aligned}&space;" title="https://latex.codecogs.com/svg.image?\large \begin{aligned}b_x=\sigma(x\_offset)+c_x\\b_y=\sigma(y\_offset)+c_y\end{aligned} " />
+</p>
 但是如果目标中心点靠近左上角，就较难预测。于是引入了一个缩放系数并设置为2,偏移范围扩张到了-0.5~1.5
-$$
-b_x=\sigma(2 ⋅ x\_offset-0.5)+c_x\\
-b_y=\sigma(2 ⋅ y\_offset-0.5)+c_y
-$$
+<p align="middle">
+<img src="https://latex.codecogs.com/svg.image?\begin{aligned}b_x=\sigma(2&space;\cdot&space;x\_offset-0.5)&plus;c_x\\b_y=\sigma(2&space;\cdot&space;y\_offset-0.5)&plus;c_y\end{aligned}&space;" title="https://latex.codecogs.com/svg.image?\begin{aligned}b_x=\sigma(2 \cdot x\_offset-0.5)+c_x\\b_y=\sigma(2 \cdot y\_offset-0.5)+c_y\end{aligned} " />
+</p>
+
 ## Mosaic数据增强
 
 在数据预处理时将四张图片进行翻转、缩放等操作拼成一张图片，提高学习样本的多样性，且一次计算能够处理四张图片
 <p align="middle">
-<img src="/md_image/Mosaic.PNG" alt="Mosaic" width="300" />
+<img src="/md_image/Mosaic.PNG" alt="Mosaic" width="50%" />
 </p>
+
 # 后记
 
 **实验过程中遇到的部分琐碎问题总结**

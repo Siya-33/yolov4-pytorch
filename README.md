@@ -24,7 +24,7 @@ vs2019+cuda11.0+torch1.7.0+cudnn8.0.5
 
 > pip install torch-1.7.0+cu110-cp38-cp38-win_amd64.whl
 
-相关依赖包见[requirements.txt](https://github.com/Siya-33/yolov4-pytorch/requirements.txt)
+相关依赖包见[requirements.txt](https://github.com/Siya-33/yolov4-pytorch/blob/master/requirements.txt)
 
 ## 数据下载
 

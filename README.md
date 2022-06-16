@@ -293,13 +293,6 @@ $b$和$b^{gt}$分别代表了预测框和真实框的中心点，$\rho^2$代表�
 <img src="/md_image/Mosaic.PNG" alt="Mosaic" width="50%" />
 </p>
 
-## 参考文献
-
-[^1]: [睿智的目标检测30——Pytorch搭建YoloV4目标检测平台](https://blog.csdn.net/weixin_44791964/article/details/106214657?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165452328016781818733628%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165452328016781818733628&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-106214657-null-null.142^v11^insert_blog,157^v13^new_style1&utm_term=YOLOv4&spm=1018.2226.3001.4187)
-[^2]: Chien-Yao Wang, Hong-Yuan Mark Liao, I-Hau Yeh, Yueh-Hua Wu, Ping-Yang Chen and Jun-Wei Hsieh. “CSPNet: A New Backbone that can Enhance Learning Capability of CNN..” computer vision and pattern recognition (2019): n. pag.
-[^3]: Zhaohui Zheng, Ping Wang, Wei Liu, Jinze Li, Rongguang Ye and Dongwei Ren. “Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression..” national conference on artificial intelligence (2019): n. pag.
-[^4]: Alexey Bochkovskiy, Chien-Yao Wang and Hong-Yuan Mark Liao. “YOLOv4: Optimal Speed and Accuracy of Object Detection” arXiv: Computer Vision and Pattern Recognition (2020): n. pag.
-
 # 后记
 
 **实验过程中遇到的部分琐碎问题总结**
@@ -315,3 +308,10 @@ $b$和$b^{gt}$分别代表了预测框和真实框的中心点，$\rho^2$代表�
 > gbk编码错误
 
 标签和路径避免中文，打开文件过程中将encoding设置为utf-8
+
+# 参考文献
+
+[^1]: [睿智的目标检测30——Pytorch搭建YoloV4目标检测平台](https://blog.csdn.net/weixin_44791964/article/details/106214657?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165452328016781818733628%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165452328016781818733628&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-106214657-null-null.142^v11^insert_blog,157^v13^new_style1&utm_term=YOLOv4&spm=1018.2226.3001.4187)
+[^2]: Chien-Yao Wang, Hong-Yuan Mark Liao, I-Hau Yeh, Yueh-Hua Wu, Ping-Yang Chen and Jun-Wei Hsieh. “CSPNet: A New Backbone that can Enhance Learning Capability of CNN..” computer vision and pattern recognition (2019): n. pag.
+[^3]: Zhaohui Zheng, Ping Wang, Wei Liu, Jinze Li, Rongguang Ye and Dongwei Ren. “Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression..” national conference on artificial intelligence (2019): n. pag.
+[^4]: Alexey Bochkovskiy, Chien-Yao Wang and Hong-Yuan Mark Liao. “YOLOv4: Optimal Speed and Accuracy of Object Detection” arXiv: Computer Vision and Pattern Recognition (2020): n. pag.

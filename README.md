@@ -75,7 +75,7 @@ val_annotation_path   获得图片的路径和标签
 
 <img src="/md_image/net.PNG" alt="net" style="zoom:67%;" />
 
-模型主要由三大部分组成
+模型[^1]主要由三大部分组成
 
 - 主干特征提取网络 CSPDarkNet53
 
@@ -100,7 +100,7 @@ $						Mish = x \times tanh(ln(1+e^x))$
 </p>
 Resblock_body  一系列残差网络构成的大卷积块
 
-结构图如下
+结构图[^2]如下
 <p align="middle">
 <img src="/md_image/Resblock_body.PNG" alt="Resblock_body" width="50%" />
 </p>
@@ -256,6 +256,9 @@ map指标和对数平均误检率如下
 相比于yolov3，yolov4有相当多的改进点
 
 ## CIoU
+
+示意图和公式[^3]如下
+
 <p align="middle">
 <img src="/md_image/CIoU.PNG" alt="CIoU" width="50%"/>
 </p>
@@ -285,9 +288,17 @@ $b$和$b^{gt}$分别代表了预测框和真实框的中心点，$\rho^2$代表�
 ## Mosaic数据增强
 
 在数据预处理时将四张图片进行翻转、缩放等操作拼成一张图片，提高学习样本的多样性，且一次计算能够处理四张图片
+如图所示[^4]
 <p align="middle">
 <img src="/md_image/Mosaic.PNG" alt="Mosaic" width="50%" />
 </p>
+
+## 参考文献
+
+[^1]: [睿智的目标检测30——Pytorch搭建YoloV4目标检测平台](https://blog.csdn.net/weixin_44791964/article/details/106214657?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165452328016781818733628%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165452328016781818733628&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-106214657-null-null.142^v11^insert_blog,157^v13^new_style1&utm_term=YOLOv4&spm=1018.2226.3001.4187)
+[^2]: Chien-Yao Wang, Hong-Yuan Mark Liao, I-Hau Yeh, Yueh-Hua Wu, Ping-Yang Chen and Jun-Wei Hsieh. “CSPNet: A New Backbone that can Enhance Learning Capability of CNN..” computer vision and pattern recognition (2019): n. pag.
+[^3]: Zhaohui Zheng, Ping Wang, Wei Liu, Jinze Li, Rongguang Ye and Dongwei Ren. “Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression..” national conference on artificial intelligence (2019): n. pag.
+[^4]: Alexey Bochkovskiy, Chien-Yao Wang and Hong-Yuan Mark Liao. “YOLOv4: Optimal Speed and Accuracy of Object Detection” arXiv: Computer Vision and Pattern Recognition (2020): n. pag.
 
 # 后记
 
